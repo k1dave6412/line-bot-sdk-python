@@ -56,12 +56,12 @@ class Base(object):
         """
         return not self.__eq__(other)
 
-    def as_json_string(self):
+    def as_json_string(self, ensure_ascii=False):
         """Return JSON string from this object.
 
         :rtype: str
         """
-        return json.dumps(self.as_json_dict(), sort_keys=True)
+        return json.dumps(self.as_json_dict(), sort_keys=True, ensure_ascii=ensure_ascii)
 
     def as_json_dict(self):
         """Return dictionary from this object.

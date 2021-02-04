@@ -21,15 +21,18 @@ import json
 from .__about__ import __version__
 from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
-from .models import (
-    Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
-    MessageQuotaConsumptionResponse, IssueLinkTokenResponse, IssueChannelTokenResponse,
-    MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
-    MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
-    InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse, BotInfo, GetWebhookResponse, TestWebhookResponse,
-)
+from .models import (BotInfo, BroadcastResponse, Content, Error,
+                     GetWebhookResponse, InsightDemographicResponse,
+                     InsightFollowersResponse, InsightMessageDeliveryResponse,
+                     InsightMessageEventResponse, IssueChannelTokenResponse,
+                     IssueLinkTokenResponse, MemberIds,
+                     MessageDeliveryBroadcastResponse,
+                     MessageDeliveryMulticastResponse,
+                     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
+                     MessageProgressNarrowcastResponse,
+                     MessageQuotaConsumptionResponse, MessageQuotaResponse,
+                     NarrowcastResponse, Profile, RichMenuResponse,
+                     TestWebhookResponse)
 from .models.responses import Group
 
 
@@ -689,7 +692,7 @@ class LineBotApi(object):
         :return: rich menu id
         """
         response = self._post(
-            '/v2/bot/richmenu', data=rich_menu.as_json_string(), timeout=timeout
+            '/v2/bot/richmenu', data=rich_menu.as_json_string(ensure_ascii=True), timeout=timeout
         )
 
         return response.json.get('richMenuId')
